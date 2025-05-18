@@ -4,6 +4,7 @@ This project contains SQL queries addressing four business questions related to 
 
 ## Question Explanations
 **1. High-Value Customers with Multiple Products**
+
 Approach:
 - Joined `plans_plan` table twice: once for savings and once for investment plans, linked by `owner_id`
 - Counted distinct savings and investment plans per customer
@@ -13,6 +14,7 @@ Approach:
 - sorted the result by total deposits in descending order
 
 **2. Transaction Frequency Analysis**
+
 Approach:
 - Calculated total transaction counts and months active per customer based on transaction date
 - Computed aveage transaction per month by dividing total transactions by active months
@@ -20,12 +22,14 @@ Approach:
 - Aggregated counts and average transactions by frequency category for the final result
 
 **3. Account Inactivity in the last 1 year**
+
 Approach:
 - Combined plans from both savings and investment plans
 - Retrieved last transaction date per plan and calculated inactivity days based on current date
 - Filtered for accounts with no transactions in the last 365 days
 
 **4. Customer Lifetime Value (CLV) Estimation**
+
 Approach:
 - Calculated tenure in months from date joined to today
 - Counted total transactions per customer
