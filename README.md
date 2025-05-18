@@ -1,9 +1,8 @@
 # Overview
 
-This project contains SQL queries addressing four business questions related to customer plans, transactions and activity analysis. The queries are written using provided schema involving tables: users_customuser, plans_plan, savings_savingsaccount and withdrawals_withdrawal.
+This project contains SQL queries addressing four business questions related to customer plans, transactions and activity analysis. The queries are written using provided schema involving tables: `users_customuser`, `plans_plan`, `savings_savingsaccount` and `withdrawals_withdrawal`.
 
 ## Question Explanations
----
 1. High-Value Customers with Multiple Products
 Approach:
 - Joined `plans_plan` table twice: once for savings and once for investment plans, linked by `owner_id`
@@ -34,12 +33,11 @@ Approach:
 - Estimated CLV using the formula: (total transaction / tenure) x 12 x average profit per transaction
 - Ordered the result by estimated CLV in descending order to see high value customers at the top
 
----
 ## Challenges and Resolutions
 - Handling zero or NULL transaction counts:
   Some cusomers had no transactions or incomplete data, which caused `NULL` values or zero counts. Resolved by using `COALESCE` and filtered out zero-tenure cases to avoid division errors
 - Date range calculations:
   Calculating tenure and inactivity required careful date arithematic and using appropriate date functions like `DATEDIIFF` and `TIMESTAMPDIFF` to get consistent results. Took a bit of research but was worth it.
 - Combining data from multiple product types:
-  For cross-product analyses, joining plans and tranactions across savings and investments plans was complex due to different tables and IDs. Used UNION and JOIN strategies to merge data properly.
+  For cross-product analyses, joining plans and tranactions across savings and investments plans was complex due to different tables and IDs. Used `UNION` and `JOIN` strategies to merge data properly.
 - Performance consideratons: The queries join large tables and aggregate over many rows, made sure there weren't unnecessary table joins and indexing key columns to minimize runtime.
